@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <!--
+    <definition
+		name="baseLayout"
+		template="/WEB-INF/jsp/layouts/base.jsp">
+        
+		<put-attribute name="title" value=""/>
+		<put-attribute name="menuPanel" value="/WEB-INF/jsp/inc/menu.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/inc/footer.jsp"/>
+        
+    </definition>
+    <definition
+        name="dashbaordLayout"
+        template="/WEB-INF/jsp/layouts/dashboard.jsp">
+
+    </definition>
+    -->
+    <definition
+        name="index"
+        template="/WEB-INF/jsp/index.jsp">
+
+    </definition>
+    <definition
+        name="dashboard"
+        template="/WEB-INF/jsp/dashboard.jsp">
+    </definition>
+
+    <definition
+        name="customBeanView"
+        template="/WEB-INF/jsp/customBean.jsp">
+            
+    </definition>
+
+    <definition name="issuesList" template="/WEB-INF/jsp/issue/issuesList.jsp">
+        
+    </definition>
+
+    <definition name="/users/list" template="/WEB-INF/jsp/user/usersList.jsp">
+    </definition>
+
+    <definition name="/users/edit" template="/WEB-INF/jsp/user/userEdit.jsp">
+        
+    </definition>
+</tiles-definitions>

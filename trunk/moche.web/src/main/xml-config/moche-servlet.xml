@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/index.html">indexCtrl</prop>
+                <prop key="/dashboard.html">dashboardCtrl</prop>
+                <prop key="/issuesList.html">issuesListCtrl</prop>
+                <prop key="/users/list.html">usersListCtrl</prop>
+                <prop key="/users/delete.html">userDeleteCtrl</prop>
+                <prop key="/users/edit.html">userEditCtrl</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="dashboardCtrl" class="de.berlios.moche.web.DashboardController" autowire="byType"/>
+    <bean id="indexCtrl" class="de.berlios.moche.web.IndexController" autowire="byType"/>
+    <bean id="issuesListCtrl" class="de.berlios.moche.web.issue.IssuesListController"
+        autowire="byType"/>
+    <bean id="usersListCtrl" class="de.berlios.moche.web.user.UsersListController"
+        autowire="byType"/>
+    <bean id="userDeleteCtrl" class="de.berlios.moche.web.user.UserDeleteController"
+        autowire="byType"/>
+    <bean id="userEditCtrl" class="de.berlios.moche.web.user.UserEditController"
+        autowire="byType">
+        <property name="formView" value="/users/edit"/>
+        <property name="successView" value="/users/list"/>
+        <property name="commandName" value="user"/>
+        <property name="commandClass" value="de.berlios.moche.model.User"/>
+    </bean>
+    <!-- inne beany widoku -->
+    <bean
+		id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>messages</value>
+        </property>
+    </bean>
+
+    <bean
+		id="tilesConfigurator"
+        class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+        <property name="preparerFactoryClass"
+			value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
+        <property name="definitions">
+            <value>/WEB-INF/tiles-config.xml</value>
+        </property>
+    </bean>
+    <bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.tiles2.TilesView</value>
+        </property>
+        <property name="requestContextAttribute">
+            <value>rc</value>
+        </property>
+    </bean>
+
+    <!--
+    <bean
+		id="pdfViewResolver"
+		class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="order">
+            <value>1</value>
+        </property>
+        <property name="location" value="/WEB-INF/views.xml"/>
+    </bean>
+	-->
+    
+    <bean
+		id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+	/>
+</beans>
